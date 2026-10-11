@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Automatizze Excel | Planilhas personalizadas para o seu negócio</title>
+<link rel="canonical" href="https://automatizzeexcel.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Automatizze Excel | Planilhas personalizadas para o seu negócio">
+<meta property="og:description" content="Planilhas feitas sob medida: financeiro, estoque, comissões, orçamentos e painéis. Peça seu orçamento pelo WhatsApp.">
+<meta property="og:url" content="https://automatizzeexcel.com.br/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231D6F42'/%3E%3Cpath d='M8 8h16v16H8zM8 16h16M16 8v16' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
 <meta name="description" content="Planilhas feitas sob medida para o seu negócio: controle financeiro, estoque, comissões, orçamentos e painéis. Peça seu orçamento pelo WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,6 +162,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
 /* WhatsApp flutuante */
 .float-wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3)}
 .float-wa svg{width:30px;height:30px;fill:#fff}
+
+/* Aviso de cookies */
+.consent{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;max-width:620px;margin-inline:auto;background:var(--card);border:1px solid var(--grid);border-radius:var(--radius);box-shadow:0 14px 34px -14px rgba(16,40,29,.5);padding:16px 18px;display:none;gap:14px;align-items:center;flex-wrap:wrap;font-size:.92rem}
+.consent.show{display:flex}
+.consent p{flex:1 1 280px;color:var(--muted)}
+.consent a{color:var(--green);font-weight:600}
+.consent .acts{display:flex;gap:8px}
+footer a{color:var(--green);font-weight:600}
 
 /* Única animação de entrada: a planilha do hero */
 @keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -346,9 +361,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
 <footer>
   <div class="wrap">
     <span>© <span id="ano"></span> Automatizze Excel. Todos os direitos reservados.</span>
-    <span>Planilhas personalizadas para pequenos negócios</span>
+    <span><a href="politica-privacidade.html">Política de Privacidade</a></span>
   </div>
 </footer>
+
+<div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <p>Usamos cookies para medir o desempenho dos nossos anúncios. Veja a <a href="politica-privacidade.html">Política de Privacidade</a>.</p>
+  <div class="acts">
+    <button class="btn btn-ghost btn-sm" id="consentNo" type="button">Recusar</button>
+    <button class="btn btn-wa btn-sm" id="consentYes" type="button">Aceitar</button>
+  </div>
+</div>
 
 <a class="float-wa" id="floatWa" href="#" aria-label="Falar no WhatsApp" target="_blank" rel="noopener">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.12.55 4.18 1.6 6L4 28l7.1-1.86a12 12 0 0 0 4.94 1.06C22.68 27.2 28 21.8 28 15.16 28 8.5 22.7 3 16.04 3Zm0 21.9c-1.6 0-3.17-.43-4.54-1.24l-.33-.2-4.2 1.1 1.12-4.1-.21-.34a9.8 9.8 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.8-9.8 5.4 0 9.8 4.4 9.8 9.8 0 5.4-4.4 9.98-9.94 9.98Zm5.4-7.34c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.5.7.3 1.26.48 1.69.62.7.22 1.35.2 1.86.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
@@ -356,8 +379,51 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
 
 <script>
 /* ====== CONFIGURAÇÃO: troque aqui ====== */
-const WHATSAPP = "5537999997085"; // DDI + DDD + número, só dígitos. Ex.: 5535999999999
+const WHATSAPP = "5537999997085"; // DDI + DDD + número, só dígitos
 /* ======================================== */
+
+/* ====== GOOGLE ADS: preencha depois de criar a conta ======
+   AW_ID: ID da tag, ex.: "AW-123456789"
+   CONV_WHATSAPP: rótulo da conversão de clique no WhatsApp, ex.: "AbCdEfGhIjK"
+   CONV_FORM: rótulo da conversão do formulário (pode ser o mesmo rótulo)
+   Enquanto AW_ID estiver vazio, nenhum rastreamento é carregado. */
+const AW_ID = "";
+const CONV_WHATSAPP = "";
+const CONV_FORM = "";
+/* ========================================================== */
+
+// Consentimento de cookies (a tag do Google só carrega depois de "Aceitar")
+const CONSENT_KEY = "ae_consent";
+function getConsent(){ try{ return localStorage.getItem(CONSENT_KEY); }catch(e){ return null; } }
+function setConsent(v){ try{ localStorage.setItem(CONSENT_KEY, v); }catch(e){} }
+
+let adsLoaded = false;
+function loadAds(){
+  if(adsLoaded || !AW_ID) return;
+  adsLoaded = true;
+  const t = document.createElement("script");
+  t.async = true;
+  t.src = "https://www.googletagmanager.com/gtag/js?id=" + AW_ID;
+  document.head.appendChild(t);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ window.dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", AW_ID);
+}
+function track(label){
+  if(adsLoaded && window.gtag && AW_ID && label){
+    gtag("event", "conversion", { send_to: AW_ID + "/" + label });
+  }
+}
+
+(function(){
+  const box = document.getElementById("consent");
+  const c = getConsent();
+  if(c === "yes"){ loadAds(); }
+  else if(c === null && AW_ID){ box.classList.add("show"); }
+  document.getElementById("consentYes").addEventListener("click", ()=>{ setConsent("yes"); box.classList.remove("show"); loadAds(); });
+  document.getElementById("consentNo").addEventListener("click", ()=>{ setConsent("no"); box.classList.remove("show"); });
+})();
 
 const waLink = msg => "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
 
@@ -365,10 +431,12 @@ const waLink = msg => "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponen
 document.querySelectorAll("[data-wa-msg]").forEach(a=>{
   a.addEventListener("click", e=>{
     e.preventDefault();
+    track(CONV_WHATSAPP);
     window.open(waLink(a.dataset.waMsg), "_blank", "noopener");
   });
 });
 document.getElementById("floatWa").href = waLink("Olá! Vim pelo site e quero saber mais sobre planilhas personalizadas.");
+document.getElementById("floatWa").addEventListener("click", ()=>track(CONV_WHATSAPP));
 document.getElementById("ano").textContent = new Date().getFullYear();
 
 // Formulário -> mensagem pronta no WhatsApp
@@ -380,6 +448,7 @@ document.getElementById("leadForm").addEventListener("submit", e=>{
             "Quero uma planilha para: " + f.get("tipo") + ".";
   const d = (f.get("detalhes")||"").trim();
   if(d) msg += "\nDetalhes: " + d;
+  track(CONV_FORM);
   window.open(waLink(msg), "_blank", "noopener");
 });
 
