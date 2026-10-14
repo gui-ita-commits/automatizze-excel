@@ -1,487 +1,1159 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Automatizze Excel | Planilhas personalizadas para o seu negócio</title>
-<link rel="canonical" href="https://automatizzeexcel.com.br/">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Automatizze Excel | Planilhas personalizadas para o seu negócio">
-<meta property="og:description" content="Planilhas feitas sob medida: financeiro, estoque, comissões, orçamentos e painéis. Peça seu orçamento pelo WhatsApp.">
-<meta property="og:url" content="https://automatizzeexcel.com.br/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231D6F42'/%3E%3Cpath d='M8 8h16v16H8zM8 16h16M16 8v16' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
-<meta name="description" content="Planilhas feitas sob medida para o seu negócio: controle financeiro, estoque, comissões, orçamentos e painéis. Peça seu orçamento pelo WhatsApp.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --paper:#F6F7F4;
-  --card:#FFFFFF;
-  --grid:#D6DBD2;
-  --ink:#10281D;
-  --muted:#4F6358;
-  --green:#1D6F42;
-  --green-dark:#0F4A2C;
-  --select:#FFE27A;
-  --wa:#1FA855;
-  --radius:6px;
-  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
-  --body:"Figtree","Segoe UI",system-ui,sans-serif;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#0E1A14;--card:#14241B;--grid:#2A4034;--ink:#E9F1EC;--muted:#A3B8AC;
-    --green:#3FA56E;--green-dark:#2E8556;--select:#7A6514;
-  }
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
-img,svg{max-width:100%}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--green);outline-offset:2px}
-.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
-h1,h2,h3{font-family:var(--head);line-height:1.1;letter-spacing:-.02em}
-h1{font-size:clamp(2.4rem,5.6vw,4rem);font-weight:800}
-h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;max-width:20ch}
-h3{font-size:1.25rem;font-weight:700}
-p.lead{font-size:1.15rem;color:var(--muted);max-width:52ch}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatizze Soluções Empresariais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Header */
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--grid)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{font-family:var(--head);font-weight:800;font-size:1.25rem;text-decoration:none;display:flex;align-items:center;gap:.5rem}
-.brand i{display:inline-grid;place-items:center;width:28px;height:28px;background:var(--green);color:#fff;border-radius:4px;font-style:normal;font-size:1rem}
-.nav ul{display:flex;gap:1.6rem;list-style:none}
-.nav ul a{text-decoration:none;font-weight:500;color:var(--muted)}
-.nav ul a:hover{color:var(--ink)}
-@media(max-width:760px){.nav ul{display:none}}
+    :root {
+      --navy:    #0D1B3E;
+      --navy-2:  #0A1530;
+      --ink:     #1A2744;
+      --slate:   #4A6070;
+      --mist:    #8EA5B4;
+      --cloud:   #EDF2F7;
+      --white:   #FFFFFF;
+      --accent:  #1A56C4;
+      --accent-2:#0D3D99;
+      --green:   #00B899;
+      --green-l: #E0F7F4;
+      --amber:   #F59E0B;
+      --radius:  10px;
+      --shadow:  0 4px 24px rgba(13,27,62,0.10);
+      --shadow-lg: 0 12px 48px rgba(13,27,62,0.14);
+    }
 
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.5rem;border-radius:var(--radius);font-weight:600;font-size:1rem;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:var(--body);transition:background .15s,transform .15s}
-.btn-wa{background:var(--wa);color:#fff}
-.btn-wa:hover{background:#178a45}
-.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
-.btn-ghost:hover{background:var(--ink);color:var(--paper)}
-.btn-sm{padding:.55rem 1rem;font-size:.95rem}
+    html { scroll-behavior: smooth; }
 
-/* Hero */
-.hero{padding:64px 0 80px;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;background-position:-1px -1px;position:relative}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,var(--paper));pointer-events:none}
-.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
-.hero-copy{background:var(--paper);padding:8px 0}
-.hero-copy h1{margin-bottom:1.2rem}
-.hero-copy .lead{margin-bottom:2rem}
-.cta-row{display:flex;flex-wrap:wrap;gap:.9rem}
-.proof{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;color:var(--muted);font-size:.95rem}
-.proof span::before{content:"✓";color:var(--green);font-weight:700;margin-right:.45rem}
-@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:40px}.hero{padding-top:40px}}
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 16px;
+    }
 
-/* Planilha interativa */
-.sheet{background:var(--card);border:1px solid var(--grid);border-radius:var(--radius);box-shadow:0 18px 40px -22px rgba(16,40,29,.45);overflow:hidden}
-.sheet-bar{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--grid);font-size:.85rem}
-.sheet-bar .name{min-width:46px;text-align:center;padding:3px 8px;border:1px solid var(--grid);border-radius:3px;font-weight:600}
-.sheet-bar .fx{color:var(--green);font-style:italic;font-weight:700}
-.sheet-bar .formula{flex:1;padding:3px 8px;border:1px solid var(--grid);border-radius:3px;min-height:26px;font-family:Consolas,"Courier New",monospace;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.sheet-scroll{overflow-x:auto}
-table.grid{border-collapse:collapse;width:100%;min-width:430px;font-size:.95rem}
-.grid th,.grid td{border:1px solid var(--grid);padding:0;height:38px}
-.grid thead th{background:var(--paper);font-weight:500;color:var(--muted);font-size:.8rem;height:26px}
-.grid .rh{background:var(--paper);color:var(--muted);width:34px;text-align:center;font-size:.8rem}
-.grid td.txt{padding:0 10px;white-space:nowrap}
-.grid td.calc{padding:0 10px;text-align:right;font-variant-numeric:tabular-nums;cursor:default}
-.grid td.calc.strong{font-weight:700}
-.grid input{width:100%;height:100%;border:0;background:transparent;font:inherit;color:inherit;padding:0 10px;text-align:right;font-variant-numeric:tabular-nums}
-.grid input:focus,.grid td.calc:focus{outline:2px solid var(--green);outline-offset:-2px;background:var(--select)}
-.grid tr.total td{background:color-mix(in srgb,var(--green) 10%,var(--card));font-weight:700}
-.grid td.out{background:var(--select);font-weight:700}
-.sheet-foot{padding:10px 14px;font-size:.88rem;color:var(--muted);border-top:1px solid var(--grid)}
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.2;
+      color: var(--navy);
+    }
 
-/* Seções */
-section{padding:88px 0}
-section.alt{background:var(--card);border-block:1px solid var(--grid)}
-.sec-head{display:grid;gap:1rem;margin-bottom:3rem}
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #E2EAF1;
+      padding: 0 5%;
+    }
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      font-weight: 600 !important;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--accent-2) !important; color: var(--white) !important; }
 
-/* Dores */
-.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--grid);border-radius:var(--radius);overflow:hidden;background:var(--card)}
-.pain{padding:28px;border-right:1px solid var(--grid)}
-.pain:last-child{border-right:0}
-.pain h3{margin-bottom:.6rem}
-.pain p{color:var(--muted)}
-@media(max-width:820px){.pains{grid-template-columns:1fr}.pain{border-right:0;border-bottom:1px solid var(--grid)}.pain:last-child{border-bottom:0}}
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #E8F0FB 0%, #FFFFFF 55%, #E0F7F4 100%);
+      padding: 96px 5% 80px;
+    }
+    .hero-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-l);
+      color: var(--green);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--slate);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 2px solid #D1DDE8;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-/* Tipos de planilha */
-.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.type{border:1px solid var(--grid);border-radius:var(--radius);padding:24px;background:var(--paper);display:grid;gap:.7rem;align-content:start}
-.type .tag{font-family:Consolas,"Courier New",monospace;font-size:.85rem;color:var(--green);font-weight:700}
-.type p{color:var(--muted);font-size:.98rem}
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid #E2EAF1;
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--navy);
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--mist);
+      font-weight: 500;
+    }
 
-/* Processo */
-.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
-.steps li{counter-increment:s;padding-top:18px;border-top:4px solid var(--green)}
-.steps li::before{content:counter(s);font-family:var(--head);font-weight:800;font-size:2.4rem;color:var(--green);display:block;line-height:1;margin-bottom:.6rem}
-.steps h3{margin-bottom:.4rem}
-.steps p{color:var(--muted);font-size:.98rem}
-@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.steps{grid-template-columns:1fr}}
+    /* Hero visual */
+    .hero-visual {
+      position: relative;
+    }
+    .mockup-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid #E2EAF1;
+    }
+    .mockup-bar {
+      background: var(--cloud);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #E2EAF1;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #FF6058; }
+    .dot-y { background: #FFBD2E; }
+    .dot-g { background: #28C840; }
+    .mockup-url {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      color: var(--mist);
+      margin-left: 8px;
+      flex: 1;
+    }
+    .mockup-body { padding: 24px; }
+    .mockup-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .metric-box {
+      background: var(--cloud);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .metric-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--navy);
+    }
+    .metric-key { font-size: 0.68rem; color: var(--mist); margin-top: 2px; }
+    .metric-up { font-size: 0.7rem; color: var(--green); font-weight: 600; }
+    .task-list { display: flex; flex-direction: column; gap: 8px; }
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cloud);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .task-icon {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+    .icon-blue { background: #DBEAFE; color: var(--accent); }
+    .icon-green { background: var(--green-l); color: var(--green); }
+    .icon-amber { background: #FEF3C7; color: var(--amber); }
+    .badge-done { margin-left: auto; background: var(--green-l); color: var(--green); font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+    .badge-prog { margin-left: auto; background: #DBEAFE; color: var(--accent); font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+    .badge-pend { margin-left: auto; background: #FEF3C7; color: var(--amber); font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
 
-/* Diferenciais */
-.why{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-.why ul{list-style:none;display:grid;gap:1.4rem}
-.why li{display:grid;grid-template-columns:28px 1fr;gap:12px}
-.why li svg{width:24px;height:24px;color:var(--green);margin-top:3px}
-.why li strong{display:block;font-size:1.05rem}
-.why li span{color:var(--muted);font-size:.98rem}
-@media(max-width:820px){.why{grid-template-columns:1fr;gap:32px}}
+    .floating-pill {
+      position: absolute;
+      background: var(--white);
+      border-radius: 100px;
+      box-shadow: var(--shadow);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--navy);
+      border: 1px solid #E2EAF1;
+    }
+    .fp-top { top: -18px; right: 20px; }
+    .fp-bot { bottom: -18px; left: 20px; }
 
-/* FAQ */
-.faq{max-width:760px;display:grid;gap:0;border-top:1px solid var(--grid)}
-.faq details{border-bottom:1px solid var(--grid);padding:20px 0}
-.faq summary{cursor:pointer;font-weight:600;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:1rem}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-weight:500;font-size:1.4rem;line-height:1;color:var(--green);transition:transform .2s}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq p{margin-top:.8rem;color:var(--muted)}
+    /* ── SECTION SHARED ── */
+    section { padding: 88px 5%; }
+    .section-inner { max-width: 1160px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--slate);
+      max-width: 560px;
+    }
+    .section-head { margin-bottom: 52px; }
+    .section-head.center { text-align: center; }
+    .section-head.center .section-sub { margin: 0 auto; }
 
-/* Contato */
-.contact{background:var(--green-dark);color:#fff;border-radius:var(--radius);padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.contact h2{color:#fff;max-width:14ch}
-.contact p{color:rgba(255,255,255,.82);margin-top:1rem}
-form{display:grid;gap:14px}
-label{display:grid;gap:6px;font-weight:500;font-size:.95rem}
-input.f,select.f,textarea.f{font:inherit;padding:.8rem .9rem;border-radius:var(--radius);border:2px solid transparent;background:#fff;color:#10281D;width:100%}
-textarea.f{min-height:96px;resize:vertical}
-input.f:focus,select.f:focus,textarea.f:focus{outline:3px solid var(--select);outline-offset:1px}
-@media(max-width:860px){.contact{grid-template-columns:1fr;padding:32px 22px}}
+    /* ── LOGOS ── */
+    .logos-band {
+      background: var(--cloud);
+      padding: 36px 5%;
+      border-top: 1px solid #E2EAF1;
+      border-bottom: 1px solid #E2EAF1;
+    }
+    .logos-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .logos-label { font-size: 0.78rem; color: var(--mist); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+    .logos-row { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
+    .logo-item {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #B0C4D0;
+      letter-spacing: -0.01em;
+    }
 
-footer{padding:40px 0 100px;color:var(--muted);font-size:.92rem}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+    /* ── SERVICES ── */
+    .services-bg { background: #F7FAFD; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 32px 28px;
+      border: 1px solid #E2EAF1;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .service-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    .si-blue { background: #DBEAFE; }
+    .si-green { background: var(--green-l); }
+    .si-amber { background: #FEF3C7; }
+    .si-purple { background: #EDE9FE; }
+    .si-red { background: #FEE2E2; }
+    .si-teal { background: #CCFBF1; }
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+    .service-card p { font-size: 0.9rem; color: var(--slate); line-height: 1.7; }
+    .service-tag {
+      margin-top: 16px;
+      display: inline-block;
+      background: var(--cloud);
+      color: var(--slate);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
 
-/* WhatsApp flutuante */
-.float-wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3)}
-.float-wa svg{width:30px;height:30px;fill:#fff}
+    /* ── CASES ── */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .case-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #E2EAF1;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .case-header {
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid #E2EAF1;
+    }
+    .case-niche {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 8px;
+    }
+    .case-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .case-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.6; }
+    .case-body { padding: 20px 28px; }
+    .case-result {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .result-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--green);
+    }
+    .result-desc { font-size: 0.82rem; color: var(--slate); }
+    .case-footer {
+      padding: 14px 28px;
+      background: var(--cloud);
+      font-size: 0.78rem;
+      color: var(--mist);
+      font-weight: 500;
+    }
 
-/* Aviso de cookies */
-.consent{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;max-width:620px;margin-inline:auto;background:var(--card);border:1px solid var(--grid);border-radius:var(--radius);box-shadow:0 14px 34px -14px rgba(16,40,29,.5);padding:16px 18px;display:none;gap:14px;align-items:center;flex-wrap:wrap;font-size:.92rem}
-.consent.show{display:flex}
-.consent p{flex:1 1 280px;color:var(--muted)}
-.consent a{color:var(--green);font-weight:600}
-.consent .acts{display:flex;gap:8px}
-footer a{color:var(--green);font-weight:600}
+    /* ── HOW IT WORKS ── */
+    .how-bg { background: var(--navy); }
+    .how-bg .section-tag { color: #60A5FA; }
+    .how-bg .section-title { color: var(--white); }
+    .how-bg .section-sub { color: #8EA5B4; }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 52px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 20px);
+      right: calc(12.5% + 20px);
+      height: 1px;
+      background: linear-gradient(90deg, #1D6FE8, #1D6FE8);
+      border-top: 1px dashed #2A4A6A;
+    }
+    .step-item { text-align: center; padding: 0 16px; }
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .step-item p { font-size: 0.82rem; color: #8EA5B4; line-height: 1.6; }
 
-/* Única animação de entrada: a planilha do hero */
-@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.sheet{animation:pop .7s ease-out both}
-@media(prefers-reduced-motion:reduce){.sheet{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
-</style>
+    /* ── TESTIMONIALS ── */
+    .testi-bg { background: #F7FAFD; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px;
+      border: 1px solid #E2EAF1;
+      box-shadow: var(--shadow);
+    }
+    .stars { color: var(--amber); font-size: 0.9rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .testi-text { font-size: 0.92rem; color: var(--ink); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .av-blue { background: var(--accent); }
+    .av-green { background: var(--green); }
+    .av-amber { background: var(--amber); }
+    .author-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); }
+    .author-role { font-size: 0.75rem; color: var(--mist); }
+
+    /* ── FAQ ── */
+    .faq-wrap { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid #E2EAF1;
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy);
+      transition: color .2s;
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--cloud);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: var(--slate);
+      flex-shrink: 0;
+      transition: background .2s, transform .3s;
+    }
+    .faq-item.open .faq-icon { background: var(--accent); color: var(--white); transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      padding-bottom: 20px;
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CONTACT ── */
+    .contact-bg { background: var(--navy); }
+    .contact-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .contact-bg .section-tag { color: #60A5FA; }
+    .contact-bg .section-title { color: var(--white); }
+    .contact-bg p { color: #8EA5B4; font-size: 0.95rem; margin-bottom: 32px; }
+    .contact-points { display: flex; flex-direction: column; gap: 18px; }
+    .contact-point {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.9rem;
+      color: #CBD5E1;
+    }
+    .cp-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-form {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 36px;
+    }
+    .form-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #D1DDE8;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .form-submit:hover { background: var(--accent-2); }
+    .form-note { font-size: 0.75rem; color: var(--mist); text-align: center; margin-top: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-2);
+      padding: 40px 5%;
+      border-top: 1px solid #1E3A52;
+    }
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy { font-size: 0.82rem; color: #4A6070; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.82rem; color: #4A6070; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--mist); }
+
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 200;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+    .wa-float svg { width: 28px; height: 28px; fill: var(--white); }
+
+    #consent{position:fixed;left:16px;right:16px;bottom:16px;max-width:560px;margin:auto;background:#fff;border:1px solid #D1DDE8;border-radius:12px;box-shadow:var(--shadow-lg);padding:16px 18px;z-index:300;display:none;font-size:.85rem;color:var(--slate)}
+    #consent p{margin-bottom:12px}
+    #consent a{color:var(--accent);font-weight:600}
+    #consent .row{display:flex;gap:10px;justify-content:flex-end}
+    #consent button{font-family:inherit;font-weight:600;font-size:.85rem;padding:9px 18px;border-radius:8px;cursor:pointer;border:1.5px solid #D1DDE8;background:#fff;color:var(--navy)}
+    #consent button.ok{background:var(--accent);border-color:var(--accent);color:#fff}
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid::before { display: none; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#topo"><i>▦</i> Automatizze Excel</a>
-    <ul>
-      <li><a href="#modelos">Planilhas</a></li>
-      <li><a href="#como">Como funciona</a></li>
-      <li><a href="#faq">Dúvidas</a></li>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <img src="logo.png" alt="Automatizze" style="height:48px; width:auto;" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#cases">Cases</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contato" class="nav-cta">Falar com especialista</a></li>
     </ul>
-    <a class="btn btn-wa btn-sm" href="#contato">Pedir orçamento</a>
   </div>
-</header>
-
-<main id="topo">
+</nav>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="wrap">
-    <div class="hero-copy">
-      <h1>Uma planilha feita do jeito que o seu negócio funciona.</h1>
-      <p class="lead">Chega de adaptar o seu dia a dia a modelos prontos da internet. Criamos planilhas sob medida para controlar caixa, estoque, comissões e orçamentos, sem fórmula quebrada e sem bagunça.</p>
-      <div class="cta-row">
-        <a class="btn btn-wa" href="#contato" data-wa-msg="Olá! Vim pelo site e quero um orçamento de planilha personalizada.">Pedir orçamento no WhatsApp</a>
-        <a class="btn btn-ghost" href="#modelos">Ver o que fazemos</a>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">Soluções Empresariais</div>
+      <h1>Seu negócio mais <span>inteligente</span> e produtivo</h1>
+      <p class="hero-sub">Criamos sistemas, automações e SaaS personalizados para pequenas e médias empresas que querem crescer sem contratar mais.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5537999997085?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20soluções%20da%20Automatizze" class="btn-primary" target="_blank">
+          💬 Falar no WhatsApp
+        </a>
+        <a href="#cases" class="btn-secondary">Ver resultados →</a>
       </div>
-      <div class="proof">
-        <span>Feita para o seu processo</span>
-        <span>Treinamento incluso</span>
-        <span>Suporte depois da entrega</span>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">+30</div>
+          <div class="stat-label">Empresas atendidas</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">95%</div>
+          <div class="stat-label">Satisfação dos clientes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3×</div>
+          <div class="stat-label">Ganho médio de produtividade</div>
+        </div>
       </div>
     </div>
 
-    <!-- Planilha interativa -->
-    <div class="sheet" aria-label="Exemplo de planilha interativa">
-      <div class="sheet-bar">
-        <span class="name" id="cellName">D7</span>
-        <span class="fx">fx</span>
-        <span class="formula" id="formulaBar">=D5*D6/100</span>
+    <div class="hero-visual">
+      <div class="floating-pill fp-top">
+        ✅ Sistema implantado com sucesso
       </div>
-      <div class="sheet-scroll">
-        <table class="grid">
-          <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
-          <tbody>
-            <tr><td class="rh">1</td><td class="txt"><b>Serviço</b></td><td class="txt" style="text-align:right"><b>Qtd</b></td><td class="txt" style="text-align:right"><b>Valor</b></td><td class="txt" style="text-align:right"><b>Total</b></td></tr>
-            <tr><td class="rh">2</td><td class="txt">Corte</td>
-              <td><input type="number" min="0" value="18" data-cell="B2" aria-label="Quantidade de cortes"></td>
-              <td><input type="number" min="0" value="80" data-cell="C2" aria-label="Valor do corte"></td>
-              <td class="calc" tabindex="0" data-cell="D2" data-f="=B2*C2"></td></tr>
-            <tr><td class="rh">3</td><td class="txt">Coloração</td>
-              <td><input type="number" min="0" value="7" data-cell="B3" aria-label="Quantidade de colorações"></td>
-              <td><input type="number" min="0" value="220" data-cell="C3" aria-label="Valor da coloração"></td>
-              <td class="calc" tabindex="0" data-cell="D3" data-f="=B3*C3"></td></tr>
-            <tr><td class="rh">4</td><td class="txt">Escova</td>
-              <td><input type="number" min="0" value="25" data-cell="B4" aria-label="Quantidade de escovas"></td>
-              <td><input type="number" min="0" value="50" data-cell="C4" aria-label="Valor da escova"></td>
-              <td class="calc" tabindex="0" data-cell="D4" data-f="=B4*C4"></td></tr>
-            <tr class="total"><td class="rh">5</td><td class="txt" colspan="3">Faturamento do mês</td>
-              <td class="calc strong" tabindex="0" data-cell="D5" data-f="=SOMA(D2:D4)"></td></tr>
-            <tr><td class="rh">6</td><td class="txt" colspan="3">Comissão da equipe (%)</td>
-              <td><input type="number" min="0" max="100" value="40" data-cell="D6" aria-label="Percentual de comissão"></td></tr>
-            <tr><td class="rh">7</td><td class="txt" colspan="3"><b>A pagar à equipe</b></td>
-              <td class="calc out" tabindex="0" data-cell="D7" data-f="=D5*D6/100"></td></tr>
-          </tbody>
-        </table>
+      <div class="mockup-card">
+        <div class="mockup-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <div class="mockup-url">app.suanegocio.com.br</div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-title">📊 Painel de Controle — Salão da Maria</div>
+          <div class="metric-row">
+            <div class="metric-box">
+              <div class="metric-val">R$18k</div>
+              <div class="metric-key">Faturamento</div>
+              <div class="metric-up">▲ +32%</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">143</div>
+              <div class="metric-key">Agendamentos</div>
+              <div class="metric-up">▲ +18%</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">4.9★</div>
+              <div class="metric-key">Avaliação</div>
+              <div class="metric-up">▲ Top</div>
+            </div>
+          </div>
+          <div class="task-list">
+            <div class="task-item">
+              <div class="task-icon icon-green">✓</div>
+              Confirmações automáticas de agendamento
+              <span class="badge-done">Ativo</span>
+            </div>
+            <div class="task-item">
+              <div class="task-icon icon-blue">📋</div>
+              Relatório mensal de desempenho
+              <span class="badge-prog">Gerado</span>
+            </div>
+            <div class="task-item">
+              <div class="task-icon icon-amber">🔔</div>
+              Lembrete de retorno de clientes
+              <span class="badge-pend">Agendado</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="sheet-foot">Altere os números: tudo se recalcula na hora. É assim que a sua planilha vai trabalhar por você.</div>
+      <div class="floating-pill fp-bot">
+        ⚡ 3h economizadas por dia
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos-band">
+  <div class="logos-inner">
+    <span class="logos-label">Nichos atendidos</span>
+    <div class="logos-row">
+      <span class="logo-item">Salões &amp; Estética</span>
+      <span class="logo-item">Eventos &amp; Festas</span>
+      <span class="logo-item">Comércio Local</span>
+      <span class="logo-item">Clínicas</span>
+      <span class="logo-item">Prestadores de Serviço</span>
     </div>
   </div>
 </div>
 
-<!-- DORES -->
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Planilha pronta quase nunca serve de verdade.</h2>
-      <p class="lead">Você baixa um modelo, passa horas ajustando e, no fim, ainda não controla o que importa.</p>
+<!-- SERVIÇOS -->
+<section class="services-bg" id="servicos">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">O que entregamos</div>
+      <h2 class="section-title">Soluções sob medida para o seu nicho</h2>
+      <p class="section-sub">Não vendemos software genérico. Cada solução é construída para o seu tipo de negócio, com as funcionalidades que você realmente usa.</p>
     </div>
-    <div class="pains">
-      <div class="pain"><h3>Fórmulas que quebram</h3><p>Uma linha apagada sem querer e o total do mês fica errado. Ninguém sabe onde está o problema.</p></div>
-      <div class="pain"><h3>Dados espalhados</h3><p>Caderno, WhatsApp e três arquivos diferentes. Para saber o lucro, você junta tudo na mão.</p></div>
-      <div class="pain"><h3>Tempo perdido</h3><p>Horas por semana refazendo contas que a planilha certa faria sozinha em segundos.</p></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon si-blue">🖥️</div>
+        <h3>SaaS Personalizado</h3>
+        <p>Sistema web completo no seu domínio, com login, painel de controle, relatórios e tudo que sua equipe precisa — sem pagar por funcionalidades que não usa.</p>
+        <span class="service-tag">Software por assinatura</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon si-green">⚙️</div>
+        <h3>Automação de Processos</h3>
+        <p>Eliminamos tarefas manuais repetitivas: confirmações, cobranças, relatórios e comunicação com clientes rodando automaticamente 24h por dia.</p>
+        <span class="service-tag">Economia de tempo</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon si-amber">📊</div>
+        <h3>Planilhas Inteligentes</h3>
+        <p>Planilhas Excel/Google Sheets avançadas com dashboards, fórmulas complexas e automações para controle financeiro, estoque ou vendas.</p>
+        <span class="service-tag">Rápido de implantar</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon si-purple">📱</div>
+        <h3>Integração com WhatsApp</h3>
+        <p>Conectamos seu sistema ao WhatsApp para envio automático de confirmações, cobranças, lembretes e mensagens de pós-atendimento.</p>
+        <span class="service-tag">Comunicação automática</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon si-red">🌐</div>
+        <h3>Landing Pages e Sites</h3>
+        <p>Páginas profissionais para captar clientes e apresentar seus serviços, otimizadas para aparecer no Google e converter visitantes em contatos.</p>
+        <span class="service-tag">Presença digital</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon si-teal">🔗</div>
+        <h3>Integração de Ferramentas</h3>
+        <p>Conectamos plataformas que você já usa — Instagram, Google, sistemas de pagamento, agendamento online — em um único fluxo automatizado.</p>
+        <span class="service-tag">Tudo conectado</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- MODELOS -->
-<section class="alt" id="modelos">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>O que podemos montar para você</h2>
-      <p class="lead">Cada planilha nasce da sua rotina. Estes são os pedidos mais comuns, mas o seu caso pode ser outro.</p>
+<!-- CASES -->
+<section id="cases">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">Resultados reais</div>
+      <h2 class="section-title">Negócios que transformamos</h2>
+      <p class="section-sub">Veja como empresas como a sua usaram nossas soluções para crescer e trabalhar menos.</p>
     </div>
-    <div class="types">
-      <article class="type"><span class="tag">=CAIXA()</span><h3>Controle financeiro</h3><p>Entradas, saídas, contas a pagar e a receber, com o saldo do dia sempre à vista.</p></article>
-      <article class="type"><span class="tag">=ESTOQUE()</span><h3>Controle de estoque</h3><p>Entradas, baixas e aviso de produto acabando, para você parar de comprar no susto.</p></article>
-      <article class="type"><span class="tag">=COMISSAO()</span><h3>Comissões da equipe</h3><p>Cálculo automático por profissional, por serviço ou por meta, sem discussão no fim do mês.</p></article>
-      <article class="type"><span class="tag">=ORCAMENTO()</span><h3>Orçamentos e propostas</h3><p>Escolha os itens e a planilha monta o valor e o documento pronto para enviar ao cliente.</p></article>
-      <article class="type"><span class="tag">=AGENDA()</span><h3>Agenda e clientes</h3><p>Cadastro de clientes, histórico de atendimentos e lembrete de quem sumiu há muito tempo.</p></article>
-      <article class="type"><span class="tag">=PAINEL()</span><h3>Painel de resultados</h3><p>Gráficos claros com faturamento, lucro e ticket médio, atualizados conforme você lança os dados.</p></article>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-niche">Beleza &amp; Estética</div>
+          <h3>Sistema de gestão para salão de beleza</h3>
+          <p>Agendamento online, controle financeiro e lembretes automáticos para clientes substituíram caderno e mensagens manuais.</p>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-num">3h</span>
+            <span class="result-desc">economizadas por dia pela dona do salão</span>
+          </div>
+        </div>
+        <div class="case-footer">⚙️ SaaS personalizado + automação WhatsApp</div>
+      </div>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-niche">Eventos &amp; Decoração</div>
+          <h3>Gestão de aluguel de kits de decoração</h3>
+          <p>Controle de inventário, contratos digitais, cobranças automáticas e histórico de clientes centralizados em um único sistema.</p>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-num">+40%</span>
+            <span class="result-desc">de faturamento em 60 dias após implantação</span>
+          </div>
+        </div>
+        <div class="case-footer">⚙️ SaaS completo + integração Stripe</div>
+      </div>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-niche">Comércio Local</div>
+          <h3>Controle financeiro com planilha inteligente</h3>
+          <p>Dashboard de entradas, saídas, DRE automático e fluxo de caixa projetado para uma loja sem sistema de gestão.</p>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-num">R$12k</span>
+            <span class="result-desc">de gastos desnecessários identificados no 1º mês</span>
+          </div>
+        </div>
+        <div class="case-footer">⚙️ Planilha avançada Excel</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- COMO FUNCIONA -->
-<section id="como">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Do pedido à planilha funcionando</h2>
+<!-- HOW IT WORKS -->
+<section class="how-bg">
+  <div class="section-inner">
+    <div class="section-head center">
+      <div class="section-tag">Como funciona</div>
+      <h2 class="section-title">Do contato à solução em 4 etapas</h2>
+      <p class="section-sub">Processo simples, sem burocracia. Em dias, não meses.</p>
     </div>
-    <ol class="steps">
-      <li><h3>Você conta a sua rotina</h3><p>Uma conversa rápida pelo WhatsApp para entender o que você controla hoje e o que quer enxergar.</p></li>
-      <li><h3>Você recebe o orçamento</h3><p>Valor e prazo combinados antes de começar, sem surpresa no meio do caminho.</p></li>
-      <li><h3>Construímos e você testa</h3><p>Você vê a planilha em funcionamento, pede ajustes e só aprova quando estiver do seu jeito.</p></li>
-      <li><h3>Entrega com treinamento</h3><p>Mostramos como usar e continuamos disponíveis para tirar dúvidas depois.</p></li>
-    </ol>
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <h4>Diagnóstico gratuito</h4>
+        <p>Conversamos sobre seu negócio e identificamos onde você perde mais tempo e dinheiro.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <h4>Proposta personalizada</h4>
+        <p>Montamos uma proposta com a solução ideal, prazo e investimento claro.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <h4>Desenvolvimento ágil</h4>
+        <p>Construímos sua solução com atualizações frequentes para você acompanhar.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <h4>Suporte contínuo</h4>
+        <p>Treinamos sua equipe e ficamos disponíveis para ajustes e melhorias.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- DIFERENCIAIS -->
-<section class="alt">
-  <div class="wrap why">
-    <div>
-      <h2>Feita para você usar, não para impressionar.</h2>
-      <p class="lead" style="margin-top:1rem">Planilha boa é a que a sua equipe abre todo dia sem medo de estragar.</p>
-    </div>
-    <ul>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Simples de preencher</strong><span>Campos claros, listas de opções e cores que mostram o que falta.</span></div></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Protegida contra erros</strong><span>Fórmulas travadas e validação de dados para ninguém apagar o que não deve.</span></div></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Do tamanho do seu negócio</strong><span>Você paga só pelo que precisa e pode ampliar a planilha quando crescer.</span></div></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Atendimento direto</strong><span>Você fala com quem constrói a planilha, sem intermediário.</span></div></li>
-    </ul>
-  </div>
-</section>
+<!-- Depoimentos: adicionar aqui quando houver depoimentos reais de clientes -->
 
 <!-- FAQ -->
 <section id="faq">
-  <div class="wrap">
-    <div class="sec-head"><h2>Dúvidas frequentes</h2></div>
-    <div class="faq">
-      <details><summary>Preciso saber Excel para usar?</summary><p>Não. A planilha é montada para quem não é da área: você preenche os campos e os resultados aparecem sozinhos. Também ensinamos como usar na entrega.</p></details>
-      <details><summary>Funciona no celular?</summary><p>Podemos adaptar a planilha para uso no celular, via Excel ou Google Planilhas. Combinamos isso na conversa inicial, conforme a sua rotina.</p></details>
-      <details><summary>Quanto custa?</summary><p>Depende do que a planilha precisa fazer. Você conta o que precisa pelo WhatsApp e recebe um orçamento antes de qualquer compromisso.</p></details>
-      <details><summary>E se eu precisar de ajuste depois?</summary><p>Sem problema. Seu negócio muda e a planilha pode acompanhar. Combinamos o suporte e eventuais ajustes junto com o orçamento.</p></details>
-      <details><summary>Já tenho uma planilha. Vocês melhoram a minha?</summary><p>Sim. Podemos reorganizar, corrigir fórmulas e acrescentar o que falta a partir do arquivo que você já usa.</p></details>
+  <div class="section-inner">
+    <div class="section-head center">
+      <div class="section-tag">Perguntas frequentes</div>
+      <h2 class="section-title">Tire suas dúvidas</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item open">
+        <button class="faq-q">
+          Preciso entender de tecnologia para usar as soluções?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Não. Tudo que desenvolvemos é pensado para ser simples de usar no dia a dia. Fazemos treinamento completo com você e sua equipe e ficamos disponíveis para tirar dúvidas sempre que precisar.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Quanto tempo leva para implantar minha solução?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Depende da complexidade. Planilhas ficam prontas em 3 a 7 dias. Sistemas SaaS completos levam de 2 a 6 semanas. Sempre alinhamos o prazo antes de começar.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          E se eu quiser mudar algo depois de pronto?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Ajustes pequenos estão inclusos no plano de suporte mensal. Mudanças maiores ou novas funcionalidades são orçadas separadamente com valor justo e rápida execução.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Meus dados ficam seguros?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Sim. Usamos infraestrutura profissional com criptografia, backups automáticos e acesso com senha. Seus dados e os dados dos seus clientes ficam protegidos.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Qual o investimento para começar?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Cada projeto é orçado de acordo com o que você precisa. Temos soluções acessíveis para pequenos negócios. Faça o diagnóstico gratuito e apresentamos um valor claro e sem surpresas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Vocês atendem empresas de qualquer cidade?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Sim! Trabalhamos 100% online e atendemos empresas em todo o Brasil. Todo o processo — diagnóstico, apresentação, treinamento e suporte — acontece por videochamada e WhatsApp.</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CONTATO -->
-<section id="contato" style="padding-top:0">
-  <div class="wrap">
-    <div class="contact">
-      <div>
-        <h2>Conte o que você precisa controlar.</h2>
-        <p>Preencha rapidinho e abrimos a conversa no WhatsApp com tudo preenchido. Sem compromisso.</p>
+<section class="contact-bg" id="contato">
+  <div class="contact-inner">
+    <div>
+      <div class="section-tag">Entre em contato</div>
+      <h2 class="section-title">Pronto para automatizar seu negócio?</h2>
+      <p>Diagnóstico gratuito e sem compromisso. Em 30 minutos mostramos exatamente o que podemos fazer pelo seu negócio.</p>
+      <div class="contact-points">
+        <div class="contact-point">
+          <div class="cp-icon">💬</div>
+          WhatsApp: (37) 9 9999-7085
+        </div>
       </div>
-      <form id="leadForm">
-        <label>Seu nome<input class="f" name="nome" required autocomplete="name"></label>
-        <label>Tipo de negócio<input class="f" name="negocio" placeholder="Ex.: salão, loja, confeitaria" required></label>
-        <label>O que você quer controlar?
-          <select class="f" name="tipo" required>
-            <option value="">Escolha uma opção</option>
-            <option>Controle financeiro</option>
-            <option>Controle de estoque</option>
-            <option>Comissões da equipe</option>
-            <option>Orçamentos e propostas</option>
-            <option>Agenda e clientes</option>
-            <option>Painel de resultados</option>
-            <option>Outro / não sei ainda</option>
-          </select>
-        </label>
-        <label>Detalhes (opcional)<textarea class="f" name="detalhes"></textarea></label>
-        <button class="btn btn-wa" type="submit">Enviar pelo WhatsApp</button>
-      </form>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-title">Quero meu diagnóstico gratuito</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Seu nome</label>
+          <input type="text" placeholder="João Silva" />
+        </div>
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input type="tel" placeholder="(11) 9 9999-9999" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Tipo de negócio</label>
+        <select>
+          <option value="">Selecione...</option>
+          <option>Salão / Estética</option>
+          <option>Eventos / Decoração</option>
+          <option>Comércio / Loja</option>
+          <option>Clínica / Saúde</option>
+          <option>Prestador de Serviço</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>O que você precisa resolver?</label>
+        <textarea placeholder="Conta um pouco sobre o seu negócio e o principal problema que quer resolver..."></textarea>
+      </div>
+      <button class="form-submit" onclick="enviarWhatsApp()">Quero meu diagnóstico gratuito →</button>
+      <p class="form-note">🔒 Seus dados não são compartilhados com terceiros</p>
     </div>
   </div>
 </section>
 
-</main>
-
+<!-- FOOTER -->
 <footer>
-  <div class="wrap">
-    <span>© <span id="ano"></span> Automatizze Excel. Todos os direitos reservados.</span>
-    <span><a href="politica-privacidade.html">Política de Privacidade</a></span>
+  <div class="footer-inner">
+    <span class="footer-copy">
+      <img src="logo.png" alt="Automatizze" style="height:32px;vertical-align:middle;margin-right:10px;opacity:0.5;" />
+      © 2025 Automatizze Soluções Empresariais. Todos os direitos reservados.
+    </span>
+    <div class="footer-links">
+      <a href="politica-privacidade.html">Privacidade</a>
+      <a href="#">Termos</a>
+      <a href="#contato">Contato</a>
+    </div>
   </div>
 </footer>
 
-<div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+<div id="consent" role="dialog" aria-label="Aviso de cookies">
   <p>Usamos cookies para medir o desempenho dos nossos anúncios. Veja a <a href="politica-privacidade.html">Política de Privacidade</a>.</p>
-  <div class="acts">
-    <button class="btn btn-ghost btn-sm" id="consentNo" type="button">Recusar</button>
-    <button class="btn btn-wa btn-sm" id="consentYes" type="button">Aceitar</button>
-  </div>
+  <div class="row"><button id="cNo">Recusar</button><button id="cYes" class="ok">Aceitar</button></div>
 </div>
 
-<a class="float-wa" id="floatWa" href="#" aria-label="Falar no WhatsApp" target="_blank" rel="noopener">
-  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.12.55 4.18 1.6 6L4 28l7.1-1.86a12 12 0 0 0 4.94 1.06C22.68 27.2 28 21.8 28 15.16 28 8.5 22.7 3 16.04 3Zm0 21.9c-1.6 0-3.17-.43-4.54-1.24l-.33-.2-4.2 1.1 1.12-4.1-.21-.34a9.8 9.8 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.8-9.8 5.4 0 9.8 4.4 9.8 9.8 0 5.4-4.4 9.98-9.94 9.98Zm5.4-7.34c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.5.7.3 1.26.48 1.69.62.7.22 1.35.2 1.86.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
+<!-- WA FLOAT -->
+<a href="https://wa.me/5537999997085?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20as%20soluções" class="wa-float" target="_blank" title="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
 </a>
 
 <script>
-/* ====== CONFIGURAÇÃO: troque aqui ====== */
-const WHATSAPP = "5537999997085"; // DDI + DDD + número, só dígitos
-/* ======================================== */
-
-/* ====== GOOGLE ADS: preencha depois de criar a conta ======
-   AW_ID: ID da tag, ex.: "AW-123456789"
-   CONV_WHATSAPP: rótulo da conversão de clique no WhatsApp, ex.: "AbCdEfGhIjK"
-   CONV_FORM: rótulo da conversão do formulário (pode ser o mesmo rótulo)
-   Enquanto AW_ID estiver vazio, nenhum rastreamento é carregado. */
-const AW_ID = "AW-18506075141";
-const CONV_WHATSAPP = "dKBnCPWwxpgdEIWYsfhE";
-const CONV_FORM = "dKBnCPWwxpgdEIWYsfhE";
-/* ========================================================== */
-
-// Consentimento de cookies (a tag do Google só carrega depois de "Aceitar")
-const CONSENT_KEY = "ae_consent";
-function getConsent(){ try{ return localStorage.getItem(CONSENT_KEY); }catch(e){ return null; } }
-function setConsent(v){ try{ localStorage.setItem(CONSENT_KEY, v); }catch(e){} }
-
-let adsLoaded = false;
-function loadAds(){
-  if(adsLoaded || !AW_ID) return;
-  adsLoaded = true;
-  const t = document.createElement("script");
-  t.async = true;
-  t.src = "https://www.googletagmanager.com/gtag/js?id=" + AW_ID;
-  document.head.appendChild(t);
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function(){ window.dataLayer.push(arguments); };
-  gtag("js", new Date());
-  gtag("config", AW_ID);
-}
-function track(label){
-  if(adsLoaded && window.gtag && AW_ID && label){
-    gtag("event", "conversion", { send_to: AW_ID + "/" + label });
+  // Rastreamento Google Ads (só depois do consentimento)
+  const AW_ID = "AW-18506075141";
+  const CONV = "AW-18506075141/dKBnCPWwxpgdEIWYsfhE";
+  const getC = () => { try { return localStorage.getItem("ae_consent"); } catch(e){ return null; } };
+  const setC = v => { try { localStorage.setItem("ae_consent", v); } catch(e){} };
+  let adsOn = false;
+  function loadAds(){
+    if (adsOn) return; adsOn = true;
+    const sc = document.createElement("script");
+    sc.async = true; sc.src = "https://www.googletagmanager.com/gtag/js?id=" + AW_ID;
+    document.head.appendChild(sc);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("js", new Date()); gtag("config", AW_ID);
   }
-}
+  function trackWa(){ if (adsOn && window.gtag) gtag("event","conversion",{send_to:CONV}); }
+  (function(){
+    const c = getC(), box = document.getElementById("consent");
+    if (c === "yes") loadAds();
+    else if (c !== "no") box.style.display = "block";
+    document.getElementById("cYes").onclick = () => { setC("yes"); box.style.display="none"; loadAds(); };
+    document.getElementById("cNo").onclick = () => { setC("no"); box.style.display="none"; };
+    document.querySelectorAll('a[href^="https://wa.me"]').forEach(a => a.addEventListener("click", trackWa));
+  })();
 
-(function(){
-  const box = document.getElementById("consent");
-  const c = getConsent();
-  if(c === "yes"){ loadAds(); }
-  else if(c === null && AW_ID){ box.classList.add("show"); }
-  document.getElementById("consentYes").addEventListener("click", ()=>{ setConsent("yes"); box.classList.remove("show"); loadAds(); });
-  document.getElementById("consentNo").addEventListener("click", ()=>{ setConsent("no"); box.classList.remove("show"); });
-})();
-
-const waLink = msg => "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
-
-// Botões e link flutuante
-document.querySelectorAll("[data-wa-msg]").forEach(a=>{
-  a.addEventListener("click", e=>{
-    e.preventDefault();
-    track(CONV_WHATSAPP);
-    window.open(waLink(a.dataset.waMsg), "_blank", "noopener");
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
   });
-});
-document.getElementById("floatWa").href = waLink("Olá! Vim pelo site e quero saber mais sobre planilhas personalizadas.");
-document.getElementById("floatWa").addEventListener("click", ()=>track(CONV_WHATSAPP));
-document.getElementById("ano").textContent = new Date().getFullYear();
 
-// Formulário -> mensagem pronta no WhatsApp
-document.getElementById("leadForm").addEventListener("submit", e=>{
-  e.preventDefault();
-  const f = new FormData(e.target);
-  let msg = "Olá! Meu nome é " + f.get("nome") + ".\n" +
-            "Meu negócio: " + f.get("negocio") + ".\n" +
-            "Quero uma planilha para: " + f.get("tipo") + ".";
-  const d = (f.get("detalhes")||"").trim();
-  if(d) msg += "\nDetalhes: " + d;
-  track(CONV_FORM);
-  window.open(waLink(msg), "_blank", "noopener");
-});
-
-// Planilha interativa do hero
-(function(){
-  const brl = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
-  const cells = {};
-  document.querySelectorAll("[data-cell]").forEach(el=>cells[el.dataset.cell]=el);
-  const val = ref => parseFloat(cells[ref].value) || 0;
-  const nameBox = document.getElementById("cellName");
-  const fBar = document.getElementById("formulaBar");
-
-  function calc(){
-    const d2 = val("B2")*val("C2"), d3 = val("B3")*val("C3"), d4 = val("B4")*val("C4");
-    const d5 = d2+d3+d4;
-    const d7 = d5*val("D6")/100;
-    cells.D2.textContent = brl.format(d2);
-    cells.D3.textContent = brl.format(d3);
-    cells.D4.textContent = brl.format(d4);
-    cells.D5.textContent = brl.format(d5);
-    cells.D7.textContent = brl.format(d7);
+  // Formulário → WhatsApp
+  function enviarWhatsApp() {
+    const nome = document.querySelector('input[placeholder="João Silva"]').value.trim();
+    const negocio = document.querySelector('select').value;
+    const problema = document.querySelector('textarea').value.trim();
+    if (!nome) { alert('Por favor, informe seu nome.'); return; }
+    const msg = `Olá! Vim pelo site da Automatizze.\n\n*Nome:* ${nome}\n*Negócio:* ${negocio || 'Não informado'}\n*Problema:* ${problema || 'Não informado'}\n\nQuero o diagnóstico gratuito!`;
+    trackWa();
+    window.open(`https://wa.me/5537999997085?text=${encodeURIComponent(msg)}`, '_blank');
   }
-  function show(el){
-    nameBox.textContent = el.dataset.cell;
-    fBar.textContent = el.dataset.f || el.value || "";
-  }
-  Object.values(cells).forEach(el=>{
-    el.addEventListener("focus", ()=>show(el));
-    el.addEventListener("click", ()=>show(el));
-    if(el.tagName === "INPUT") el.addEventListener("input", ()=>{calc();show(el);});
-  });
-  calc();
-})();
 </script>
+
 </body>
 </html>
